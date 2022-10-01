@@ -51,7 +51,7 @@ StatsReporterWidget::StatsReporterWidget(QWidget* parent) : QWidget(parent)
   m_tblSecondaryPossibilities->setSelectionMode(QAbstractItemView::SingleSelection);
   m_tblSecondaryPossibilities->setSelectionBehavior(QAbstractItemView::SelectRows);
   m_possibilitiesHeaderLabels = QStringList(
-      {"Frame", "Nature", "HP", "Atk", "Def", "SpA", "SpD", "Spe", "H. Power", "Gender"});
+      {"Frame", "Nature", "HP", "Atk", "Def", "SpA", "SpD", "Spe", "H. Power", "Gender", "Seed"});
   m_tblSecondaryPossibilities->setColumnCount(m_possibilitiesHeaderLabels.size());
   m_tblSecondaryPossibilities->setRowCount(0);
   m_tblSecondaryPossibilities->setHorizontalHeaderLabels(m_possibilitiesHeaderLabels);
@@ -268,6 +268,8 @@ void StatsReporterWidget::onStatsGenderChanged()
     m_tblSecondaryPossibilities->setRowCount(static_cast<int>(m_filteredCandidates.size()));
     for (int i = 0; i < m_filteredCandidates.size(); i++)
     {
+      QTableWidgetItem* frameItem = new QTableWidgetItem(
+          QString("%1").arg(m_filteredCandidates[i].frameNumber, 6, 10, QChar('0')).toUpper());
       QTableWidgetItem* seedItem = new QTableWidgetItem(
           QString("%1").arg(m_filteredCandidates[i].frameNumber, 6, 10, QChar('0')).toUpper());
       QTableWidgetItem* natureItem = new QTableWidgetItem(
@@ -290,7 +292,7 @@ void StatsReporterWidget::onStatsGenderChanged()
       QTableWidgetItem* genderItem =
           new QTableWidgetItem(m_filteredCandidates[i].properties.genderIndex ? "Female" : "Male");
 
-      m_tblSecondaryPossibilities->setItem(i, 0, seedItem);
+      m_tblSecondaryPossibilities->setItem(i, 0, frameItem);
       m_tblSecondaryPossibilities->setItem(i, 1, natureItem);
       m_tblSecondaryPossibilities->setItem(i, 2, hpItem);
       m_tblSecondaryPossibilities->setItem(i, 3, atkItem);
@@ -300,6 +302,7 @@ void StatsReporterWidget::onStatsGenderChanged()
       m_tblSecondaryPossibilities->setItem(i, 7, speedItem);
       m_tblSecondaryPossibilities->setItem(i, 8, hiddenPowerItem);
       m_tblSecondaryPossibilities->setItem(i, 9, genderItem);
+      m_tblSecondaryPossibilities->setItem(i, 10, seedItem);
     }
 
     m_tblSecondaryPossibilities->resizeColumnsToContents();

@@ -171,12 +171,14 @@ BaseRNGSystem::predictStartersForNbrSeconds(u32 seed, const int nbrSeconds)
 
 BaseRNGSystem::SecondaryCandidate BaseRNGSystem::generateSecondary(u32 seed, const Stats baseStats,
                                                                    const int level,
-                                                                   const u8 genderRatio, int frameNumber)
+                                                                   const u8 genderRatio,
+                                                                   int frameNumber)
 {
   SecondaryCandidate secondary;
 
   // Every RNG call from now on influence the starters.
   secondary.startingSeed = seed;
+  secondary.frameNumber = frameNumber;
   extractIVs(secondary.properties, seed);
   // Ability, doesn't matter
   LCG(seed);
@@ -248,10 +250,12 @@ void BaseRNGSystem::generateAllSecondariesInSearchRange(const u32 postStarterSee
                                                         const Stats baseStats, const int level,
                                                         const u8 genderRatio,
                                                         const int rngAdvanceSearchStart,
-                                                        const int searchSeedsAmount, const int advancedSearchStart)
+                                                        const int searchSeedsAmount,
+                                                        const int advancedSearchStart)
 {
   u32 seed = postStarterSeed;
   seed = LCGn(seed, rngAdvanceSearchStart);
+  int startingFrameNumber = rngAdvanceSearchStart - 1;
   m_secondaryCandidates.clear();
   for (int i = 0; i < searchSeedsAmount; i++)
   {
