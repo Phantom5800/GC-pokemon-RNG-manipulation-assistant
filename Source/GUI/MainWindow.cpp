@@ -83,6 +83,14 @@ void MainWindow::initialiseWidgets()
   connect(m_btnSetSeedManually, &QPushButton::clicked, this, &MainWindow::setSeedManually);
   m_btnSetSeedManually->setEnabled(false);
 
+  m_btnSetSecondarySeedManually = new QPushButton("Set 2nd See&d");
+  connect(m_btnSetSecondarySeedManually, &QPushButton::clicked, this,
+          &MainWindow::setSecondarySeedManually);
+  m_btnSetSecondarySeedManually->setEnabled(false);
+  m_btnFindSecondSeed = new QPushButton("Find 2nd See&d");
+  connect(m_btnFindSecondSeed, &QPushButton::clicked, this, &MainWindow::findSecondSeed);
+  m_btnFindSecondSeed->setEnabled(false);
+
   m_lblCurrentSeed = new QLabel("  ????  ");
   m_lblCurrentSeed->setTextInteractionFlags(Qt::NoTextInteraction);
   m_lblStoredSeed = new QLabel("  None  ");
@@ -127,6 +135,8 @@ void MainWindow::makeLayouts()
   setSeedLayout->addWidget(new QLabel("Set the seed manually:"));
   setSeedLayout->addWidget(m_edtManualSeed);
   setSeedLayout->addWidget(m_btnSetSeedManually);
+  setSeedLayout->addWidget(m_btnSetSecondarySeedManually);
+  setSeedLayout->addWidget(m_btnFindSecondSeed);
 
   QHBoxLayout* filterUnwantedLayout = new QHBoxLayout;
   filterUnwantedLayout->addStretch();
@@ -268,7 +278,7 @@ void MainWindow::setCurrentSeed(u32 seed, int rerollCount)
   m_btnStoreSeed->setEnabled(true);
 }
 
-void MainWindow::startSeedFinder()
+void MainWindow::startSeedFinder(bool secondSeed)
 {
   QFileInfo info(QString::fromStdString(SPokemonRNG::getCurrentSystem()->getPrecalcFilename()));
   if (!(info.exists() && info.isFile()))
@@ -291,14 +301,27 @@ void MainWindow::startSeedFinder()
   SeedFinderWizard* wizard = new SeedFinderWizard(this, selection);
   if (wizard->exec() == QDialog::Accepted)
   {
-    setCurrentSeed(wizard->getSeeds()[0], 0);
-    m_seedSet = true;
+    if (!secondSeed)
+    {
+      setCurrentSeed(wizard->getSeeds()[0], 0);
+      m_seedSet = true;
+      storeSeed();
+      m_chkFilterUnwantedPredictions->setChecked(true);
+    }
+    else
+    {
+      m_statsReporterWidget->setCustomStartingSeed(wizard->getSeeds()[0]);
+    }
   }
-  storeSeed();
-  m_chkFilterUnwantedPredictions->setChecked(true);
+
+  m_btnSetSecondarySeedManually->setEnabled(true);
+  m_btnFindSecondSeed->setEnabled(true);
   delete wizard;
 }
-
+void MainWindow::findSecondSeed()
+{
+  startSeedFinder(true);
+}
 void MainWindow::resetPredictor()
 {
   GUICommon::gameSelection selection =
@@ -317,6 +340,8 @@ void MainWindow::resetPredictor()
   m_lblStoredSeed->setText("  None  ");
   m_statsReporterWidget->reset();
   m_statsReporterWidget->setDisabled(true);
+  m_btnSetSecondarySeedManually->setEnabled(false);
+  m_btnFindSecondSeed->setEnabled(false);
 }
 
 void MainWindow::storeSeed()
@@ -344,6 +369,8 @@ void MainWindow::setSeedManually()
     ss >> seed;
     setCurrentSeed(seed, 0);
     m_seedSet = true;
+    m_btnSetSecondarySeedManually->setEnabled(true);
+    m_btnFindSecondSeed->setEnabled(true);
   }
   else
   {
@@ -355,7 +382,30 @@ void MainWindow::setSeedManually()
     delete msg;
   }
 }
-
+void MainWindow::setSecondarySeedManually()
+{
+  QRegularExpression hexMatcher("^[0-9A-F]{1,8}$", QRegularExpression::CaseInsensitiveOption);
+  QRegularExpressionMatch match = hexMatcher.match(m_edtManualSeed->text());
+  if (match.hasMatch())
+  {
+    std::stringstream ss(m_edtManualSeed->text().toStdString());
+    ss >> std::hex;
+    u32 seed = 0;
+    ss >> seed;
+    m_statsReporterWidget->setCustomStartingSeed(seed);
+    // setCurrentSeed(seed, 0);//Do something here
+    m_seedSet = true;
+  }
+  else
+  {
+    QMessageBox* msg = new QMessageBox(QMessageBox::Critical, "Invalid seed",
+                                       "The seed you have entered is not a valid seed. Pleaser "
+                                       "enter a valid 32 bit hexadecimal number.",
+                                       QMessageBox::Ok);
+    msg->exec();
+    delete msg;
+  }
+}
 void MainWindow::singleRerollPredictor()
 {
   rerollPredictor(true);

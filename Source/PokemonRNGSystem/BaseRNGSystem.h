@@ -8,6 +8,9 @@
 #include <string>
 #include <vector>
 
+#include "Settings/DlgSettings.h"
+#include "Settings/SConfig.h"
+
 // This class manages all the backend and the implementation details of the RNG of a GameCube
 // Pokemon game, it consists of a seed finder with precalculation to improve performances and a stat
 // predictor based on the frame of confirming a name on the naming screen
@@ -90,6 +93,8 @@ public:
   // Internally generates all the secondary Pokémons in the searh range
   virtual void generateAllSecondariesInSearchRange(const u32 postStarterSeed,
                                                    const int secondaryIndex) = 0;
+  virtual void customGenerateAllSecondariesInSearchRange(const u32 postStarterSeed,
+                                                         const int secondaryIndex) = 0;
   // Obtain the possible stats range of the given secondary, order: HP, Atk, Def, SpA, SpD, Spe
   virtual std::array<StatsRange, 6> getSecondaryStatsRange(const int secondaryIndex) = 0;
   std::vector<SecondaryCandidate> getFilteredSecondaryCandidates(const int hp, const int atk,
