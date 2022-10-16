@@ -64,35 +64,35 @@ GeneralTab::GeneralTab(QWidget* parent) : QWidget(parent)
   m_spbMaxAutoReroll->setMaximumWidth(150);
 
     QLabel* lblStartingTeddyFrame =
-      new QLabel(tr("From Eevee seed Teddy search. Frame to start at: "));
+      new QLabel(tr("From new game. Frame to start at: "));
   m_spbTeddyStartingFrame = new QSpinBox();
   m_spbTeddyStartingFrame->setMinimum(1);
   m_spbTeddyStartingFrame->setMaximum(1000000);
-  m_spbTeddyStartingFrame->setValue(680000);
+  m_spbTeddyStartingFrame->setValue(660000);
   m_spbTeddyStartingFrame->setMaximumWidth(150);
 
       QLabel* lblTeddySearchWindow =
-      new QLabel(tr("From Eevee seed Teddy search. Number of frames to check: "));
+      new QLabel(tr("From new game. Number of frames to check: "));
   m_spbTeddySearchFrames = new QSpinBox();
   m_spbTeddySearchFrames->setMinimum(1);
   m_spbTeddySearchFrames->setMaximum(500000);
-  m_spbTeddySearchFrames->setValue(63000);
+  m_spbTeddySearchFrames->setValue(110000);
   m_spbTeddySearchFrames->setMaximumWidth(150);
 
         QLabel* lblTeddyNewGameStartFrame =
-      new QLabel(tr("New Game Teddy search. Frame to start at: "));
+      new QLabel(tr("Saving before teddy. Frame to start at: "));
   m_spbTeddyNewGameStartingFrame = new QSpinBox();
   m_spbTeddyNewGameStartingFrame->setMinimum(1);
   m_spbTeddyNewGameStartingFrame->setMaximum(1000000);
-  m_spbTeddyNewGameStartingFrame->setValue(473000);
+  m_spbTeddyNewGameStartingFrame->setValue(470000);
   m_spbTeddyNewGameStartingFrame->setMaximumWidth(150);
 
         QLabel* lblTeddyNewGameSearchWindow =
-      new QLabel(tr("New Game Teddy search. Number of frames to check: "));
+      new QLabel(tr("Saving before teddy. Number of frames to check: "));
   m_spbTeddyNewGameSearchFrames = new QSpinBox();
   m_spbTeddyNewGameSearchFrames->setMinimum(1);
   m_spbTeddyNewGameSearchFrames->setMaximum(500000);
-  m_spbTeddyNewGameSearchFrames->setValue(7000);
+  m_spbTeddyNewGameSearchFrames->setValue(10000);
   m_spbTeddyNewGameSearchFrames->setMaximumWidth(150);
 
   QFormLayout* predictionTimeLayout = new QFormLayout;

@@ -186,22 +186,22 @@ bool SConfig::getXDPalVersionEnabled() const
 
 int SConfig::getXDTeddyStartingFrame() const
 {
-  return m_settings->value("galeDarknessPredictor/TeddyStartingFrame", 680000).toInt();
+  return m_settings->value("galeDarknessPredictor/TeddyStartingFrame", 660000).toInt();
 }
 
 int SConfig::getXDTeddySearchFrames() const
 {
-  return m_settings->value("galeDarknessPredictor/TeddySearchFrames", 63000).toInt();
+  return m_settings->value("galeDarknessPredictor/TeddySearchFrames", 110000).toInt();
 }
 
 int SConfig::getXDTeddyNewGameStartingFrame() const
 {
-  return m_settings->value("galeDarknessPredictor/TeddyNewGameStartingFrame", 473000).toInt();
+  return m_settings->value("galeDarknessPredictor/TeddyNewGameStartingFrame", 470000).toInt();
 }
 
 int SConfig::getXDTeddyNewGameSearchFrames() const
 {
-  return m_settings->value("galeDarknessPredictor/TeddyNewGameSearchFrames", 7000).toInt();
+  return m_settings->value("galeDarknessPredictor/TeddyNewGameSearchFrames", 10000).toInt();
 }
 
 void SConfig::setThreadLimit(const int threadLimit)
