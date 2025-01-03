@@ -131,21 +131,14 @@ SeedFinderPassColosseum::SeedFinderPassColosseum(QWidget* parent, const int nbrF
   QRadioButton* rbtnHeracross = new QRadioButton("Heracross", this);
   rbtnHeracross->setIcon(getTeamSelectIcon(ColosseumRNGSystem::QuickBattleTeamLeader::Heracross));
 
-  m_playerTeamIndexBtnGroup->addButton(rbtnBlaziken,
-                                       ColosseumRNGSystem::QuickBattleTeamLeader::Blaziken);
+  m_playerTeamIndexBtnGroup->addButton(rbtnBlaziken, ColosseumRNGSystem::QuickBattleTeamLeader::Blaziken);
   m_playerTeamIndexBtnGroup->addButton(rbtnEntei, ColosseumRNGSystem::QuickBattleTeamLeader::Entei);
-  m_playerTeamIndexBtnGroup->addButton(rbtnSwampert,
-                                       ColosseumRNGSystem::QuickBattleTeamLeader::Swampert);
-  m_playerTeamIndexBtnGroup->addButton(rbtnRaikou,
-                                       ColosseumRNGSystem::QuickBattleTeamLeader::Raikou);
-  m_playerTeamIndexBtnGroup->addButton(rbtnMeganium,
-                                       ColosseumRNGSystem::QuickBattleTeamLeader::Meganium);
-  m_playerTeamIndexBtnGroup->addButton(rbtnSuicune,
-                                       ColosseumRNGSystem::QuickBattleTeamLeader::Suicune);
-  m_playerTeamIndexBtnGroup->addButton(rbtnMetagross,
-                                       ColosseumRNGSystem::QuickBattleTeamLeader::Metagross);
-  m_playerTeamIndexBtnGroup->addButton(rbtnHeracross,
-                                       ColosseumRNGSystem::QuickBattleTeamLeader::Heracross);
+  m_playerTeamIndexBtnGroup->addButton(rbtnSwampert, ColosseumRNGSystem::QuickBattleTeamLeader::Swampert);
+  m_playerTeamIndexBtnGroup->addButton(rbtnRaikou, ColosseumRNGSystem::QuickBattleTeamLeader::Raikou);
+  m_playerTeamIndexBtnGroup->addButton(rbtnMeganium, ColosseumRNGSystem::QuickBattleTeamLeader::Meganium);
+  m_playerTeamIndexBtnGroup->addButton(rbtnSuicune, ColosseumRNGSystem::QuickBattleTeamLeader::Suicune);
+  m_playerTeamIndexBtnGroup->addButton(rbtnMetagross, ColosseumRNGSystem::QuickBattleTeamLeader::Metagross);
+  m_playerTeamIndexBtnGroup->addButton(rbtnHeracross, ColosseumRNGSystem::QuickBattleTeamLeader::Heracross);
 
   m_playerTeamIndexBtnGroup->button(0)->setChecked(true);
 
