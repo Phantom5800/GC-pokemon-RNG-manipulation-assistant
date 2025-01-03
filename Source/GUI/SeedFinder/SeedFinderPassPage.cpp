@@ -13,6 +13,44 @@
 #include "../SPokemonRNG.h"
 #include "SeedFinderWizard.h"
 
+static const char* RadioButtonStyle = R"(
+		QRadioButton::indicator {
+			width: 15px;
+			height: 15px;
+		}
+
+		QRadioButton {
+			font: 12pt;
+		}
+
+    QRadioButton:hover {
+      background-color: #E0E0E0;
+    }
+	)";
+
+static const char* RadioButtonStyleWithIcons = R"(
+		QRadioButton::indicator {
+			width: 0px;
+			height: 0px;
+		}
+
+		QRadioButton {
+			font: 12pt;
+		}
+
+    QRadioButton:checked {
+      border: 3px solid blue;
+    }
+
+    QRadioButton:!checked {
+      margin: 3px;
+    }
+
+    QRadioButton:hover {
+      background-color: #E0E0E0;
+    }
+	)";
+
 SeedFinderPassPage::SeedFinderPassPage(QWidget* parent, const int nbrFoundSeeds)
     : QWizardPage(parent)
 {
@@ -94,16 +132,7 @@ SeedFinderPassColosseum::SeedFinderPassColosseum(QWidget* parent, const int nbrF
   for (auto button : m_playerNameIndexBtnGroup->buttons())
   {
     button->setMinimumWidth(125);
-    button->setStyleSheet(R"(
-		QRadioButton::indicator {
-			width: 30px;
-			height: 30px;
-		}
-
-		QRadioButton {
-			font: 12pt;
-		}
-	  )");
+    button->setStyleSheet(RadioButtonStyle);
   }
 
   QHBoxLayout* rbtnNameLayout = new QHBoxLayout;
@@ -146,16 +175,7 @@ SeedFinderPassColosseum::SeedFinderPassColosseum(QWidget* parent, const int nbrF
   {
     button->setMinimumWidth(175);
     button->setIconSize(QSize(50, 50));
-    button->setStyleSheet(R"(
-		QRadioButton::indicator {
-			width: 30px;
-			height: 30px;
-		}
-
-		QRadioButton {
-			font: 12pt;
-		}
-	  )");
+    button->setStyleSheet(RadioButtonStyleWithIcons);
   }
 
   QHBoxLayout* rbtnTeamLayout1 = new QHBoxLayout;
@@ -246,22 +266,18 @@ SeedFinderPassXD::SeedFinderPassXD(QWidget* parent, const int nbrFoundSeeds)
   QRadioButton* rbtnRayquaza = new QRadioButton("Rayquaza", this);
   QRadioButton* rbtnJirachi = new QRadioButton("Jirachi", this);
 
-  m_playerTeamIndexBtnGroup->addButton(rbtnMewtwo,
-                                       GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Mewtwo);
-  m_playerTeamIndexBtnGroup->addButton(rbtnMew,
-                                       GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Mew);
-  m_playerTeamIndexBtnGroup->addButton(rbtnDeoxys,
-                                       GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Deoxys);
-  m_playerTeamIndexBtnGroup->addButton(rbtnRayquaza,
-                                       GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Rayquaza);
-  m_playerTeamIndexBtnGroup->addButton(rbtnJirachi,
-                                       GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Jirachi);
+  m_playerTeamIndexBtnGroup->addButton(rbtnMewtwo, GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Mewtwo);
+  m_playerTeamIndexBtnGroup->addButton(rbtnMew, GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Mew);
+  m_playerTeamIndexBtnGroup->addButton(rbtnDeoxys, GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Deoxys);
+  m_playerTeamIndexBtnGroup->addButton(rbtnRayquaza, GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Rayquaza);
+  m_playerTeamIndexBtnGroup->addButton(rbtnJirachi, GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Jirachi);
 
   m_playerTeamIndexBtnGroup->button(0)->setChecked(true);
 
   for (auto button : m_playerTeamIndexBtnGroup->buttons())
   {
     button->setMinimumWidth(125);
+    button->setStyleSheet(RadioButtonStyle);
   }
 
   QLabel* lblPlayerTeam = new QLabel("Choose the leader of your generated team", this);
@@ -299,6 +315,7 @@ SeedFinderPassXD::SeedFinderPassXD(QWidget* parent, const int nbrFoundSeeds)
   for (auto button : m_enemyTeamIndexBtnGroup->buttons())
   {
     button->setMinimumWidth(150);
+    button->setStyleSheet(RadioButtonStyle);
   }
 
   QLabel* lblEnemyTeam = new QLabel("Choose the leader of your opponent's generated team", this);
