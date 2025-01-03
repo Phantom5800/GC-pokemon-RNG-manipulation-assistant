@@ -14,30 +14,30 @@
 #include "SeedFinderWizard.h"
 
 static const char* RadioButtonStyle = R"(
-		QRadioButton::indicator {
-			width: 15px;
-			height: 15px;
-		}
+    QRadioButton::indicator {
+      width: 15px;
+      height: 15px;
+    }
 
-		QRadioButton {
-			font: 12pt;
+    QRadioButton {
+      font: 12pt;
       padding: 15px 5px 15px 5px;
-		}
+    }
 
     QRadioButton:hover {
       background-color: #E0E0E0;
     }
-	)";
+  )";
 
 static const char* RadioButtonStyleWithIcons = R"(
-		QRadioButton::indicator {
-			width: 0px;
-			height: 0px;
-		}
+    QRadioButton::indicator {
+      width: 0px;
+      height: 0px;
+    }
 
-		QRadioButton {
-			font: 12pt;
-		}
+    QRadioButton {
+      font: 12pt;
+    }
 
     QRadioButton:checked {
       border: 3px solid blue;
@@ -50,7 +50,7 @@ static const char* RadioButtonStyleWithIcons = R"(
     QRadioButton:hover {
       background-color: #E0E0E0;
     }
-	)";
+  )";
 
 SeedFinderPassPage::SeedFinderPassPage(QWidget* parent, const int nbrFoundSeeds)
     : QWizardPage(parent)
