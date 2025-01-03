@@ -227,7 +227,7 @@ u32 GaleDarknessRNGSystem::rollRNGToBattleMenu(u32 seed, u16* counter)
   return seed;
 }
 
-bool GaleDarknessRNGSystem::generateBattleTeam(u32& seed, const std::vector<int> criteria)
+bool GaleDarknessRNGSystem::generateBattleTeam(u32& seed, const std::vector<int>& criteria)
 {
   // Player trainer name generation
   LCG(seed);

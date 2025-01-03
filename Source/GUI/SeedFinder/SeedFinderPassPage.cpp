@@ -115,13 +115,21 @@ SeedFinderPassColosseum::SeedFinderPassColosseum(QWidget* parent, const int nbrF
   m_playerTeamIndexBtnGroup = new QButtonGroup(this);
 
   QRadioButton* rbtnBlaziken = new QRadioButton("Blaziken", this);
+  rbtnBlaziken->setIcon(getTeamSelectIcon(ColosseumRNGSystem::QuickBattleTeamLeader::Blaziken));
   QRadioButton* rbtnEntei = new QRadioButton("Entei", this);
+  rbtnEntei->setIcon(getTeamSelectIcon(ColosseumRNGSystem::QuickBattleTeamLeader::Entei));
   QRadioButton* rbtnSwampert = new QRadioButton("Swampert", this);
+  rbtnSwampert->setIcon(getTeamSelectIcon(ColosseumRNGSystem::QuickBattleTeamLeader::Swampert));
   QRadioButton* rbtnRaikou = new QRadioButton("Raikou", this);
+  rbtnRaikou->setIcon(getTeamSelectIcon(ColosseumRNGSystem::QuickBattleTeamLeader::Raikou));
   QRadioButton* rbtnMeganium = new QRadioButton("Meganium", this);
+  rbtnMeganium->setIcon(getTeamSelectIcon(ColosseumRNGSystem::QuickBattleTeamLeader::Meganium));
   QRadioButton* rbtnSuicune = new QRadioButton("Suicune", this);
+  rbtnSuicune->setIcon(getTeamSelectIcon(ColosseumRNGSystem::QuickBattleTeamLeader::Suicune));
   QRadioButton* rbtnMetagross = new QRadioButton("Metagross", this);
+  rbtnMetagross->setIcon(getTeamSelectIcon(ColosseumRNGSystem::QuickBattleTeamLeader::Metagross));
   QRadioButton* rbtnHeracross = new QRadioButton("Heracross", this);
+  rbtnHeracross->setIcon(getTeamSelectIcon(ColosseumRNGSystem::QuickBattleTeamLeader::Heracross));
 
   m_playerTeamIndexBtnGroup->addButton(rbtnBlaziken,
                                        ColosseumRNGSystem::QuickBattleTeamLeader::Blaziken);
@@ -143,7 +151,8 @@ SeedFinderPassColosseum::SeedFinderPassColosseum(QWidget* parent, const int nbrF
 
   for (auto button : m_playerTeamIndexBtnGroup->buttons())
   {
-    button->setMinimumWidth(125);
+    button->setMinimumWidth(175);
+    button->setIconSize(QSize(50, 50));
     button->setStyleSheet(R"(
 		QRadioButton::indicator {
 			width: 30px;
@@ -200,9 +209,34 @@ SeedFinderPassColosseum::SeedFinderPassColosseum(QWidget* parent, const int nbrF
   setFixedHeight(height() + 100);
 }
 
+QPixmap SeedFinderPassColosseum::getTeamSelectIcon(int id)
+{
+  switch (id)
+  {
+  case ColosseumRNGSystem::QuickBattleTeamLeader::Blaziken:
+    return QPixmap("Resources/MDP257.png");
+  case ColosseumRNGSystem::QuickBattleTeamLeader::Entei:
+    return QPixmap("Resources/MDP244.png");
+  case ColosseumRNGSystem::QuickBattleTeamLeader::Raikou:
+    return QPixmap("Resources/MDP243.png");
+  case ColosseumRNGSystem::QuickBattleTeamLeader::Suicune:
+    return QPixmap("Resources/MDP245.png");
+  case ColosseumRNGSystem::QuickBattleTeamLeader::Meganium:
+    return QPixmap("Resources/MDP154.png");
+  case ColosseumRNGSystem::QuickBattleTeamLeader::Heracross:
+    return QPixmap("Resources/MDP214.png");
+  case ColosseumRNGSystem::QuickBattleTeamLeader::Metagross:
+    return QPixmap("Resources/MDP376.png");
+  case ColosseumRNGSystem::QuickBattleTeamLeader::Swampert:
+    return QPixmap("Resources/MDP260.png");
+  }
+  return QPixmap();
+}
+
 std::vector<int> SeedFinderPassColosseum::obtainCriteria()
 {
   std::vector<int> criteria;
+  criteria.reserve(2);
   criteria.push_back(m_playerTeamIndexBtnGroup->checkedId());
   criteria.push_back(m_playerNameIndexBtnGroup->checkedId());
   return criteria;
@@ -392,6 +426,7 @@ SeedFinderPassXD::SeedFinderPassXD(QWidget* parent, const int nbrFoundSeeds)
 std::vector<int> SeedFinderPassXD::obtainCriteria()
 {
   std::vector<int> criteria;
+  criteria.reserve(6);
   criteria.push_back(m_playerTeamIndexBtnGroup->checkedId());
   criteria.push_back(m_enemyTeamIndexBtnGroup->checkedId());
   criteria.push_back(m_spnTopLeftPkmnHP->value());

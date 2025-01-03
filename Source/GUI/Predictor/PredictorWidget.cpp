@@ -166,37 +166,37 @@ bool PredictorWidget::desiredPredictionFound(const GUICommon::gameSelection game
     {
       BaseRNGSystem::PokemonProperties starter = m_startersPrediction[i].starters[j];
 
-      if (!(starter.hpIV >= SConfig::getInstance().getMinHpIv(startersSettings[j])))
+      if (starter.hpIV < SConfig::getInstance().getMinHpIv(startersSettings[j]))
       {
         passAllFilters = false;
         break;
       }
 
-      if (!(starter.atkIV >= SConfig::getInstance().getMinAtkIv(startersSettings[j])))
+      if (starter.atkIV < SConfig::getInstance().getMinAtkIv(startersSettings[j]))
       {
         passAllFilters = false;
         break;
       }
 
-      if (!(starter.defIV >= SConfig::getInstance().getMinDefIv(startersSettings[j])))
+      if (starter.defIV < SConfig::getInstance().getMinDefIv(startersSettings[j]))
       {
         passAllFilters = false;
         break;
       }
 
-      if (!(starter.spAtkIV >= SConfig::getInstance().getMinSpAtkIv(startersSettings[j])))
+      if (starter.spAtkIV < SConfig::getInstance().getMinSpAtkIv(startersSettings[j]))
       {
         passAllFilters = false;
         break;
       }
 
-      if (!(starter.spDefIV >= SConfig::getInstance().getMinSpDefIv(startersSettings[j])))
+      if (starter.spDefIV < SConfig::getInstance().getMinSpDefIv(startersSettings[j]))
       {
         passAllFilters = false;
         break;
       }
 
-      if (!(starter.speedIV >= SConfig::getInstance().getMinSpeedIv(startersSettings[j])))
+      if (starter.speedIV < SConfig::getInstance().getMinSpeedIv(startersSettings[j]))
       {
         passAllFilters = false;
         break;

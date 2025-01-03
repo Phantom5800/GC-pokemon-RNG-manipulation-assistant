@@ -36,6 +36,7 @@ class SeedFinderPassColosseum : public SeedFinderPassPage
 public:
   SeedFinderPassColosseum(QWidget* parent, const int nbrFoundSeeds);
 
+  QPixmap getTeamSelectIcon(int id);
   std::vector<int> obtainCriteria() override;
 
 private:

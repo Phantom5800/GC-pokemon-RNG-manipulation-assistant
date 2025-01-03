@@ -189,7 +189,7 @@ u32 ColosseumRNGSystem::rollRNGToBattleMenu(u32 seed, u16* counter)
   return rollRNGEnteringBattleMenu(seed, counter);
 }
 
-bool ColosseumRNGSystem::generateBattleTeam(u32& seed, const std::vector<int> criteria)
+bool ColosseumRNGSystem::generateBattleTeam(u32& seed, const std::vector<int>& criteria)
 {
   int enemyTeamIndex = (LCG(seed) >> 16) & 7;
   int playerTeamIndex = -1;

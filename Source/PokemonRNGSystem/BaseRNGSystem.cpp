@@ -84,7 +84,7 @@ void BaseRNGSystem::generatePrecalculationFile(unsigned int threadCount,
   }
 }
 
-void BaseRNGSystem::seedFinderPass(unsigned int threadCount, const std::vector<int> criteria,
+void BaseRNGSystem::seedFinderPass(unsigned int threadCount, const std::vector<int>& criteria,
                                    std::vector<u32>& seeds,
                                    std::function<void(long)> progressUpdate,
                                    std::function<bool()> shouldCancelNow)

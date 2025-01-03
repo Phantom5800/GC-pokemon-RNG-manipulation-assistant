@@ -139,6 +139,16 @@
     <None Include="qt.conf" />
     <None Include="Qt.props" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\MDP154.png" />
+    <Image Include="Resources\MDP214.png" />
+    <Image Include="Resources\MDP243.png" />
+    <Image Include="Resources\MDP244.png" />
+    <Image Include="Resources\MDP245.png" />
+    <Image Include="Resources\MDP257.png" />
+    <Image Include="Resources\MDP260.png" />
+    <Image Include="Resources\MDP376.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

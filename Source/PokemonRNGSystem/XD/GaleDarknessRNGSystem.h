@@ -42,7 +42,7 @@ private:
   };
 
   u32 rollRNGToBattleMenu(u32 seed, u16* counter = nullptr) final override;
-  bool generateBattleTeam(u32& seed, const std::vector<int> criteria) final override;
+  bool generateBattleTeam(u32& seed, const std::vector<int>& criteria) final override;
   std::string getLastObtainedCriteriasString() final override;
   std::vector<int> obtainTeamGenerationCritera(u32& seed) final override;
   int getNbrCombinationsFirstTwoCriteria() final override;
