@@ -21,6 +21,7 @@ static const char* RadioButtonStyle = R"(
 
 		QRadioButton {
 			font: 12pt;
+      padding: 15px 5px 15px 5px;
 		}
 
     QRadioButton:hover {
