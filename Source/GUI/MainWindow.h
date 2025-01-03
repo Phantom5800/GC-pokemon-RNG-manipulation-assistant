@@ -72,6 +72,7 @@ private:
 
   QLabel* m_lblRerollCount;
   QCheckBox* m_chkFilterUnwantedPredictions;
+  QCheckBox* m_chkUseAutosplitterOffset;
   PredictorWidget* m_predictorWidget;
   StatsReporterWidget* m_statsReporterWidget;
   bool m_cancelPrecalc = false;

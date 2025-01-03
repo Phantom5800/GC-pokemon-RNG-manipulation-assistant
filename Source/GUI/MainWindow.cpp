@@ -77,6 +77,18 @@ void MainWindow::initialiseWidgets()
   connect(m_chkFilterUnwantedPredictions, &QCheckBox::stateChanged, this,
           [=](int state) { m_predictorWidget->filterUnwanted(state == Qt::Checked); });
 
+  m_chkUseAutosplitterOffset = new QCheckBox(tr("Use Autosplitter Offset"));
+  m_chkUseAutosplitterOffset->setChecked(false);
+  connect(m_chkUseAutosplitterOffset, &QCheckBox::stateChanged, this,
+          [=](int state) { 
+                m_predictorWidget->setAutoSplitterOffset(state == Qt::Checked); 
+                GUICommon::gameSelection selection = static_cast<GUICommon::gameSelection>(m_cmbGame->currentIndex());
+                if (selection != GUICommon::gameSelection::Unselected)
+                {
+                    m_predictorWidget->updateGUI(selection);
+                }
+          });
+
   m_edtManualSeed = new QLineEdit();
   m_edtManualSeed->setEnabled(false);
   m_btnSetSeedManually = new QPushButton("Set See&d");
@@ -141,6 +153,7 @@ void MainWindow::makeLayouts()
   QHBoxLayout* filterUnwantedLayout = new QHBoxLayout;
   filterUnwantedLayout->addStretch();
   filterUnwantedLayout->addWidget(m_chkFilterUnwantedPredictions);
+  filterUnwantedLayout->addWidget(m_chkUseAutosplitterOffset);
   filterUnwantedLayout->addStretch();
 
   QLabel* lblReroll = new QLabel(tr("Reroll count: "), this);
@@ -267,9 +280,11 @@ void MainWindow::setCurrentSeed(u32 seed, int rerollCount)
   std::vector<BaseRNGSystem::StartersPrediction> predictions =
       SPokemonRNG::getCurrentSystem()->predictStartersForNbrSeconds(
           m_currentSeed, SConfig::getInstance().getPredictionTime());
+  m_predictorWidget->setAutoSplitterOffset(m_chkUseAutosplitterOffset->isChecked());
   m_predictorWidget->setStartersPrediction(predictions);
   m_predictorWidget->updateGUI(selection);
   m_predictorWidget->filterUnwanted(m_chkFilterUnwantedPredictions->isChecked());
+  
   m_btnReset->setEnabled(true);
   m_btnRerollPrediciton->setEnabled(true);
   m_btnAutoRerollPrediciton->setEnabled(true);

@@ -94,6 +94,16 @@ SeedFinderPassColosseum::SeedFinderPassColosseum(QWidget* parent, const int nbrF
   for (auto button : m_playerNameIndexBtnGroup->buttons())
   {
     button->setMinimumWidth(125);
+    button->setStyleSheet(R"(
+		QRadioButton::indicator {
+			width: 30px;
+			height: 30px;
+		}
+
+		QRadioButton {
+			font: 12pt;
+		}
+	  )");
   }
 
   QHBoxLayout* rbtnNameLayout = new QHBoxLayout;
@@ -134,6 +144,16 @@ SeedFinderPassColosseum::SeedFinderPassColosseum(QWidget* parent, const int nbrF
   for (auto button : m_playerTeamIndexBtnGroup->buttons())
   {
     button->setMinimumWidth(125);
+    button->setStyleSheet(R"(
+		QRadioButton::indicator {
+			width: 30px;
+			height: 30px;
+		}
+
+		QRadioButton {
+			font: 12pt;
+		}
+	  )");
   }
 
   QHBoxLayout* rbtnTeamLayout1 = new QHBoxLayout;
