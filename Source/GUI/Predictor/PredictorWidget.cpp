@@ -202,25 +202,29 @@ bool PredictorWidget::desiredPredictionFound(const GUICommon::gameSelection game
         break;
       }
 
-      bool enableHiddenPowerTypeFilters =
-          SConfig::getInstance().getEnableHiddenPowerTypesFilter(startersSettings[j]);
-      int minPowerHiddenPower = SConfig::getInstance().getMinPowerHiddenPower(startersSettings[j]);
-      QVector<bool> hiddenPowerTypeFilters =
-          SConfig::getInstance().getHiddenPowerTypesFilters(startersSettings[j]);
-      if (!((hiddenPowerTypeFilters[starter.hiddenPowerTypeIndex] &&
-             starter.hiddenPowerPower >= minPowerHiddenPower) ||
-            !enableHiddenPowerTypeFilters))
+      bool enableHiddenPowerTypeFilters = SConfig::getInstance().getEnableHiddenPowerTypesFilter(startersSettings[j]);
+      if (enableHiddenPowerTypeFilters)
       {
-        passAllFilters = false;
-        break;
+        int minPowerHiddenPower = SConfig::getInstance().getMinPowerHiddenPower(startersSettings[j]);
+        QVector<bool> hiddenPowerTypeFilters = SConfig::getInstance().getHiddenPowerTypesFilters(startersSettings[j]);
+        bool hiddenPowerCorrect = hiddenPowerTypeFilters[starter.hiddenPowerTypeIndex] &&
+                                  starter.hiddenPowerPower >= minPowerHiddenPower;
+        if (!hiddenPowerCorrect)
+        {
+          passAllFilters = false;
+          break;
+        }
       }
 
       bool enableNatureFilters = SConfig::getInstance().getEnableNatureFilter(startersSettings[j]);
-      QVector<bool> natureFilters = SConfig::getInstance().getNatureFilters(startersSettings[j]);
-      if (!(natureFilters[starter.natureIndex] || !enableNatureFilters))
+      if (enableNatureFilters)
       {
-        passAllFilters = false;
-        break;
+        QVector<bool> natureFilters = SConfig::getInstance().getNatureFilters(startersSettings[j]);
+        if (!natureFilters[starter.natureIndex])
+        {
+          passAllFilters = false;
+          break;
+        }
       }
 
       if (game == GUICommon::gameSelection::XD)
