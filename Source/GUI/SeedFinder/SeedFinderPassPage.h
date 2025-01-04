@@ -7,6 +7,8 @@
 #include <QProgressBar>
 #include <QSpinBox>
 #include <QWizardPage>
+#include "../PokemonRNGSystem/Colosseum/ColosseumRNGSystem.h"
+#include "../PokemonRNGSystem/XD/GaleDarknessRNGSystem.h"
 
 class SeedFinderPassPage : public QWizardPage
 {
@@ -36,7 +38,7 @@ class SeedFinderPassColosseum : public SeedFinderPassPage
 public:
   SeedFinderPassColosseum(QWidget* parent, const int nbrFoundSeeds);
 
-  QPixmap getTeamSelectIcon(int id);
+  QPixmap getTeamSelectIcon(ColosseumRNGSystem::QuickBattleTeamLeader id);
   std::vector<int> obtainCriteria() override;
 
 private:
@@ -49,6 +51,8 @@ class SeedFinderPassXD : public SeedFinderPassPage
 public:
   SeedFinderPassXD(QWidget* parent, const int nbrFoundSeeds);
 
+  QPixmap getTeamSelectIcon(GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer id);
+  QPixmap getTeamSelectIcon(GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy id);
   std::vector<int> obtainCriteria() override;
 
 private:

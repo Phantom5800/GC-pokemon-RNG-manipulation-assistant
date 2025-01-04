@@ -223,7 +223,7 @@ SeedFinderPassColosseum::SeedFinderPassColosseum(QWidget* parent, const int nbrF
   setFixedHeight(height() + 100);
 }
 
-QPixmap SeedFinderPassColosseum::getTeamSelectIcon(int id)
+QPixmap SeedFinderPassColosseum::getTeamSelectIcon(ColosseumRNGSystem::QuickBattleTeamLeader id)
 {
   switch (id)
   {
@@ -262,10 +262,15 @@ SeedFinderPassXD::SeedFinderPassXD(QWidget* parent, const int nbrFoundSeeds)
   m_playerTeamIndexBtnGroup = new QButtonGroup(this);
 
   QRadioButton* rbtnMewtwo = new QRadioButton("Mewtwo", this);
+  rbtnMewtwo->setIcon(getTeamSelectIcon(GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Mewtwo));
   QRadioButton* rbtnMew = new QRadioButton("Mew", this);
+  rbtnMew->setIcon(getTeamSelectIcon(GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Mew));
   QRadioButton* rbtnDeoxys = new QRadioButton("Deoxys", this);
+  rbtnDeoxys->setIcon(getTeamSelectIcon(GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Deoxys));
   QRadioButton* rbtnRayquaza = new QRadioButton("Rayquaza", this);
+  rbtnRayquaza->setIcon(getTeamSelectIcon(GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Rayquaza));
   QRadioButton* rbtnJirachi = new QRadioButton("Jirachi", this);
+  rbtnJirachi->setIcon(getTeamSelectIcon(GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Jirachi));
 
   m_playerTeamIndexBtnGroup->addButton(rbtnMewtwo, GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Mewtwo);
   m_playerTeamIndexBtnGroup->addButton(rbtnMew, GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Mew);
@@ -277,8 +282,9 @@ SeedFinderPassXD::SeedFinderPassXD(QWidget* parent, const int nbrFoundSeeds)
 
   for (auto button : m_playerTeamIndexBtnGroup->buttons())
   {
-    button->setMinimumWidth(125);
-    button->setStyleSheet(RadioButtonStyle);
+    button->setMinimumWidth(175);
+    button->setIconSize(QSize(50, 50));
+    button->setStyleSheet(RadioButtonStyleWithIcons);
   }
 
   QLabel* lblPlayerTeam = new QLabel("Choose the leader of your generated team", this);
@@ -295,28 +301,29 @@ SeedFinderPassXD::SeedFinderPassXD(QWidget* parent, const int nbrFoundSeeds)
   m_enemyTeamIndexBtnGroup = new QButtonGroup(this);
 
   QRadioButton* rbtnArticuno = new QRadioButton("Articuno", this);
+  rbtnArticuno->setIcon(getTeamSelectIcon(GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Articuno));
   QRadioButton* rbtnZapdos = new QRadioButton("Zapdos", this);
+  rbtnZapdos->setIcon(getTeamSelectIcon(GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Zapdos));
   QRadioButton* rbtnMoltres = new QRadioButton("Moltres", this);
+  rbtnMoltres->setIcon(getTeamSelectIcon(GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Moltres));
   QRadioButton* rbtnKangaskhan = new QRadioButton("Kangaskhan", this);
+  rbtnKangaskhan->setIcon(getTeamSelectIcon(GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Kangaskhan));
   QRadioButton* rbtnLatias = new QRadioButton("Latias", this);
+  rbtnLatias->setIcon(getTeamSelectIcon(GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Latias));
 
-  m_enemyTeamIndexBtnGroup->addButton(rbtnArticuno,
-                                      GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Articuno);
-  m_enemyTeamIndexBtnGroup->addButton(rbtnZapdos,
-                                      GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Zapdos);
-  m_enemyTeamIndexBtnGroup->addButton(rbtnMoltres,
-                                      GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Moltres);
-  m_enemyTeamIndexBtnGroup->addButton(rbtnKangaskhan,
-                                      GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Kangaskhan);
-  m_enemyTeamIndexBtnGroup->addButton(rbtnLatias,
-                                      GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Latias);
+  m_enemyTeamIndexBtnGroup->addButton(rbtnArticuno, GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Articuno);
+  m_enemyTeamIndexBtnGroup->addButton(rbtnZapdos, GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Zapdos);
+  m_enemyTeamIndexBtnGroup->addButton(rbtnMoltres, GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Moltres);
+  m_enemyTeamIndexBtnGroup->addButton(rbtnKangaskhan, GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Kangaskhan);
+  m_enemyTeamIndexBtnGroup->addButton(rbtnLatias, GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Latias);
 
   m_enemyTeamIndexBtnGroup->button(0)->setChecked(true);
 
   for (auto button : m_enemyTeamIndexBtnGroup->buttons())
   {
-    button->setMinimumWidth(150);
-    button->setStyleSheet(RadioButtonStyle);
+    button->setMinimumWidth(175);
+    button->setIconSize(QSize(50, 50));
+    button->setStyleSheet(RadioButtonStyleWithIcons);
   }
 
   QLabel* lblEnemyTeam = new QLabel("Choose the leader of your opponent's generated team", this);
@@ -432,6 +439,42 @@ SeedFinderPassXD::SeedFinderPassXD(QWidget* parent, const int nbrFoundSeeds)
   layout()->addWidget(mainWidget);
   adjustSize();
   setFixedHeight(height() + 100);
+}
+
+QPixmap SeedFinderPassXD::getTeamSelectIcon(GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer id)
+{
+  switch (id)
+  {
+  case GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Mewtwo:
+    return QPixmap("Resources/MDP150.png");
+  case GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Mew:
+    return QPixmap("Resources/MDP151.png");
+  case GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Deoxys:
+    return QPixmap("Resources/MDP386.png");
+  case GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Rayquaza:
+    return QPixmap("Resources/MDP384.png");
+  case GaleDarknessRNGSystem::BattleNowTeamLeaderPlayer::Jirachi:
+    return QPixmap("Resources/MDP385.png");
+  }
+  return QPixmap();
+}
+
+QPixmap SeedFinderPassXD::getTeamSelectIcon(GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy id)
+{
+  switch (id)
+  {
+  case GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Articuno:
+    return QPixmap("Resources/MDP144.png");
+  case GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Zapdos:
+    return QPixmap("Resources/MDP145.png");
+  case GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Moltres:
+    return QPixmap("Resources/MDP146.png");
+  case GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Kangaskhan:
+    return QPixmap("Resources/MDP115.png");
+  case GaleDarknessRNGSystem::BattleNowTeamLeaderEnemy::Latias:
+    return QPixmap("Resources/MDP380.png");
+  }
+  return QPixmap();
 }
 
 std::vector<int> SeedFinderPassXD::obtainCriteria()
