@@ -77,7 +77,7 @@ void MainWindow::initialiseWidgets()
   connect(m_chkFilterUnwantedPredictions, &QCheckBox::stateChanged, this,
           [=](int state) { m_predictorWidget->filterUnwanted(state == Qt::Checked); });
 
-  m_chkUseAutosplitterOffset = new QCheckBox(tr("Use Autosplitter Offset"));
+  m_chkUseAutosplitterOffset = new QCheckBox(tr("Offset from Black Frame"));
   m_chkUseAutosplitterOffset->setChecked(false);
   connect(m_chkUseAutosplitterOffset, &QCheckBox::stateChanged, this,
           [=](int state) { 
