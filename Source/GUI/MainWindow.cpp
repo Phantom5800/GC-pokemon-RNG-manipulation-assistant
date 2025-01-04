@@ -81,12 +81,12 @@ void MainWindow::initialiseWidgets()
   m_chkUseAutosplitterOffset->setChecked(false);
   connect(m_chkUseAutosplitterOffset, &QCheckBox::stateChanged, this,
           [=](int state) { 
-                m_predictorWidget->setAutoSplitterOffset(state == Qt::Checked); 
-                GUICommon::gameSelection selection = static_cast<GUICommon::gameSelection>(m_cmbGame->currentIndex());
-                if (selection != GUICommon::gameSelection::Unselected)
-                {
-                    m_predictorWidget->updateGUI(selection);
-                }
+            m_predictorWidget->setAutoSplitterOffset(state == Qt::Checked); 
+            GUICommon::gameSelection selection = static_cast<GUICommon::gameSelection>(m_cmbGame->currentIndex());
+            if (selection != GUICommon::gameSelection::Unselected)
+            {
+              m_predictorWidget->updateGUI(selection);
+            }
           });
 
   m_edtManualSeed = new QLineEdit();
@@ -239,7 +239,7 @@ void MainWindow::gameChanged()
   {
     SPokemonRNG::setCurrentSystem(new ColosseumRNGSystem());
   }
-  else if (selection = GUICommon::gameSelection::XD)
+  else if (selection == GUICommon::gameSelection::XD)
   {
     SPokemonRNG::setCurrentSystem(new GaleDarknessRNGSystem());
     GaleDarknessRNGSystem::setPalEnabled(SConfig::getInstance().getXDPalVersionEnabled());
