@@ -9,7 +9,10 @@
 int main(int argc, char** argv)
 {
   #ifdef _MSC_VER
-  SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED);
+  if (GetProcAddress(GetModuleHandle(TEXT("User32.dll")), "SetProcessDpiAwarenessContext"))
+  {
+    SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED);
+  }
   #endif
   QApplication app(argc, argv);
   MainWindow window;
