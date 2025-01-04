@@ -8,6 +8,8 @@
 
 #include "../GUICommon.h"
 
+static constexpr int SpinBoxWidth = 40;
+
 CommonPredictorFiltersWidget::CommonPredictorFiltersWidget(QWidget* parent) : QWidget(parent)
 {
   QLabel* lblIvs = new QLabel(tr("Filter wanted predictions by\nthe following minimal IVs"));
@@ -17,49 +19,74 @@ CommonPredictorFiltersWidget::CommonPredictorFiltersWidget(QWidget* parent) : QW
   m_spnMinHpIv->setMinimum(0);
   m_spnMinHpIv->setMaximum(31);
   m_spnMinHpIv->setValue(0);
-  m_spnMinHpIv->setMaximumWidth(75);
+  m_spnMinHpIv->setMaximumWidth(SpinBoxWidth);
 
   QLabel* lblAtkIv = new QLabel(tr("Attack: "));
-  m_spnMinAtkIv = new QSpinBox();
-  m_spnMinAtkIv->setMinimum(0);
-  m_spnMinAtkIv->setMaximum(31);
-  m_spnMinAtkIv->setValue(0);
-  m_spnMinAtkIv->setMaximumWidth(75);
+  QHBoxLayout* atkMins = new QHBoxLayout;
+  for (int i = 0; i < sizeof(m_spnMinAtkIv) / sizeof(m_spnMinAtkIv[0]); ++i)
+  {
+    m_spnMinAtkIv[i] = new QSpinBox();
+    m_spnMinAtkIv[i]->setMinimum(0);
+    m_spnMinAtkIv[i]->setMaximum(31);
+    m_spnMinAtkIv[i]->setValue(0);
+    m_spnMinAtkIv[i]->setMaximumWidth(SpinBoxWidth);
+    atkMins->addWidget(m_spnMinAtkIv[i]);
+  }
 
   QLabel* lblDefIv = new QLabel(tr("Defense: "));
-  m_spnMinDefIv = new QSpinBox();
-  m_spnMinDefIv->setMinimum(0);
-  m_spnMinDefIv->setMaximum(31);
-  m_spnMinDefIv->setValue(0);
-  m_spnMinDefIv->setMaximumWidth(75);
+  QHBoxLayout* defMins = new QHBoxLayout;
+  for (int i = 0; i < sizeof(m_spnMinDefIv) / sizeof(m_spnMinDefIv[0]); ++i)
+  {
+    m_spnMinDefIv[i] = new QSpinBox();
+    m_spnMinDefIv[i]->setMinimum(0);
+    m_spnMinDefIv[i]->setMaximum(31);
+    m_spnMinDefIv[i]->setValue(0);
+    m_spnMinDefIv[i]->setMaximumWidth(SpinBoxWidth);
+    defMins->addWidget(m_spnMinDefIv[i]);
+  }
 
   QLabel* lblSpAtkIv = new QLabel(tr("Special Attack: "));
-  m_spnMinSpAtkIv = new QSpinBox();
-  m_spnMinSpAtkIv->setMinimum(0);
-  m_spnMinSpAtkIv->setMaximum(31);
-  m_spnMinSpAtkIv->setValue(0);
-  m_spnMinSpAtkIv->setMaximumWidth(75);
+  QHBoxLayout* spAtkMins = new QHBoxLayout;
+  for (int i = 0; i < sizeof(m_spnMinSpAtkIv) / sizeof(m_spnMinSpAtkIv[0]); ++i)
+  {
+    m_spnMinSpAtkIv[i] = new QSpinBox();
+    m_spnMinSpAtkIv[i]->setMinimum(0);
+    m_spnMinSpAtkIv[i]->setMaximum(31);
+    m_spnMinSpAtkIv[i]->setValue(0);
+    m_spnMinSpAtkIv[i]->setMaximumWidth(SpinBoxWidth);
+    spAtkMins->addWidget(m_spnMinSpAtkIv[i]);
+  }
 
   QLabel* lblSpDefIv = new QLabel(tr("Special Defense: "));
-  m_spnMinSpDefIv = new QSpinBox();
-  m_spnMinSpDefIv->setMinimum(0);
-  m_spnMinSpDefIv->setMaximum(31);
-  m_spnMinSpDefIv->setValue(0);
-  m_spnMinSpDefIv->setMaximumWidth(75);
+  QHBoxLayout* spDefMins = new QHBoxLayout;
+  for (int i = 0; i < sizeof(m_spnMinSpDefIv) / sizeof(m_spnMinSpDefIv[0]); ++i)
+  {
+    m_spnMinSpDefIv[i] = new QSpinBox();
+    m_spnMinSpDefIv[i]->setMinimum(0);
+    m_spnMinSpDefIv[i]->setMaximum(31);
+    m_spnMinSpDefIv[i]->setValue(0);
+    m_spnMinSpDefIv[i]->setMaximumWidth(SpinBoxWidth);
+    spDefMins->addWidget(m_spnMinSpDefIv[i]);
+  }
 
   QLabel* lblSpeedIv = new QLabel(tr("Speed: "));
-  m_spnMinSpeedIv = new QSpinBox();
-  m_spnMinSpeedIv->setMinimum(0);
-  m_spnMinSpeedIv->setMaximum(31);
-  m_spnMinSpeedIv->setValue(0);
-  m_spnMinSpeedIv->setMaximumWidth(75);
+  QHBoxLayout* speedMins = new QHBoxLayout;
+  for (int i = 0; i < sizeof(m_spnMinSpeedIv) / sizeof(m_spnMinSpeedIv[0]); ++i)
+  {
+    m_spnMinSpeedIv[i] = new QSpinBox();
+    m_spnMinSpeedIv[i]->setMinimum(0);
+    m_spnMinSpeedIv[i]->setMaximum(31);
+    m_spnMinSpeedIv[i]->setValue(0);
+    m_spnMinSpeedIv[i]->setMaximumWidth(SpinBoxWidth);
+    speedMins->addWidget(m_spnMinSpeedIv[i]);
+  }
 
   QLabel* lblHiddenPowerPower = new QLabel(tr("Minimum power of Hidden power: "));
   m_spnMinPowerHiddenPower = new QSpinBox();
   m_spnMinPowerHiddenPower->setMinimum(30);
   m_spnMinPowerHiddenPower->setMaximum(70);
   m_spnMinPowerHiddenPower->setValue(30);
-  m_spnMinPowerHiddenPower->setMaximumWidth(75);
+  m_spnMinPowerHiddenPower->setMaximumWidth(SpinBoxWidth);
 
   QHBoxLayout* hiddenPowerPowerLayout = new QHBoxLayout;
   hiddenPowerPowerLayout->addWidget(lblHiddenPowerPower);
@@ -68,11 +95,11 @@ CommonPredictorFiltersWidget::CommonPredictorFiltersWidget(QWidget* parent) : QW
   QFormLayout* IvInputLayout = new QFormLayout();
   IvInputLayout->setLabelAlignment(Qt::AlignRight);
   IvInputLayout->addRow(lblHpIv, m_spnMinHpIv);
-  IvInputLayout->addRow(lblAtkIv, m_spnMinAtkIv);
-  IvInputLayout->addRow(lblDefIv, m_spnMinDefIv);
-  IvInputLayout->addRow(lblSpAtkIv, m_spnMinSpAtkIv);
-  IvInputLayout->addRow(lblSpDefIv, m_spnMinSpDefIv);
-  IvInputLayout->addRow(lblSpeedIv, m_spnMinSpeedIv);
+  IvInputLayout->addRow(lblAtkIv, atkMins);
+  IvInputLayout->addRow(lblDefIv, defMins);
+  IvInputLayout->addRow(lblSpAtkIv, spAtkMins);
+  IvInputLayout->addRow(lblSpDefIv, spDefMins);
+  IvInputLayout->addRow(lblSpeedIv, speedMins);
 
   QGridLayout* naturesChkLayout = new QGridLayout;
   for (int i = 0; i < GUICommon::naturesStr.size(); i++)
@@ -140,29 +167,29 @@ int CommonPredictorFiltersWidget::getMinHpIv() const
   return m_spnMinHpIv->value();
 }
 
-int CommonPredictorFiltersWidget::getMinAtkIv() const
+int CommonPredictorFiltersWidget::getMinAtkIv(int idx) const
 {
-  return m_spnMinAtkIv->value();
+  return m_spnMinAtkIv[idx]->value();
 }
 
-int CommonPredictorFiltersWidget::getMinDefIv() const
+int CommonPredictorFiltersWidget::getMinDefIv(int idx) const
 {
-  return m_spnMinDefIv->value();
+  return m_spnMinDefIv[idx]->value();
 }
 
-int CommonPredictorFiltersWidget::getMinSpAtkIv() const
+int CommonPredictorFiltersWidget::getMinSpAtkIv(int idx) const
 {
-  return m_spnMinSpAtkIv->value();
+  return m_spnMinSpAtkIv[idx]->value();
 }
 
-int CommonPredictorFiltersWidget::getMinSpDefIv() const
+int CommonPredictorFiltersWidget::getMinSpDefIv(int idx) const
 {
-  return m_spnMinSpDefIv->value();
+  return m_spnMinSpDefIv[idx]->value();
 }
 
-int CommonPredictorFiltersWidget::getMinSpeedIv() const
+int CommonPredictorFiltersWidget::getMinSpeedIv(int idx) const
 {
-  return m_spnMinSpeedIv->value();
+  return m_spnMinSpeedIv[idx]->value();
 }
 
 int CommonPredictorFiltersWidget::getMinPowerHiddenPower() const
@@ -201,29 +228,29 @@ void CommonPredictorFiltersWidget::setMinHpIv(const int minHpIv)
   m_spnMinHpIv->setValue(minHpIv);
 }
 
-void CommonPredictorFiltersWidget::setMinAtkIv(const int minAtkIv)
+void CommonPredictorFiltersWidget::setMinAtkIv(const int minAtkIv, int idx)
 {
-  m_spnMinAtkIv->setValue(minAtkIv);
+  m_spnMinAtkIv[idx]->setValue(minAtkIv);
 }
 
-void CommonPredictorFiltersWidget::setMinDefIv(const int minDefIv)
+void CommonPredictorFiltersWidget::setMinDefIv(const int minDefIv, int idx)
 {
-  m_spnMinDefIv->setValue(minDefIv);
+  m_spnMinDefIv[idx]->setValue(minDefIv);
 }
 
-void CommonPredictorFiltersWidget::setMinSpAtkIv(const int minSpAtkIv)
+void CommonPredictorFiltersWidget::setMinSpAtkIv(const int minSpAtkIv, int idx)
 {
-  m_spnMinSpAtkIv->setValue(minSpAtkIv);
+  m_spnMinSpAtkIv[idx]->setValue(minSpAtkIv);
 }
 
-void CommonPredictorFiltersWidget::setMinSpDefIv(const int minSpDefIv)
+void CommonPredictorFiltersWidget::setMinSpDefIv(const int minSpDefIv, int idx)
 {
-  m_spnMinSpDefIv->setValue(minSpDefIv);
+  m_spnMinSpDefIv[idx]->setValue(minSpDefIv);
 }
 
-void CommonPredictorFiltersWidget::setMinSpeedIv(const int minSpeedIv)
+void CommonPredictorFiltersWidget::setMinSpeedIv(const int minSpeedIv, int idx)
 {
-  m_spnMinSpeedIv->setValue(minSpeedIv);
+  m_spnMinSpeedIv[idx]->setValue(minSpeedIv);
 }
 
 void CommonPredictorFiltersWidget::setMinPowerHiddenPower(const int minPowerHiddenPower)

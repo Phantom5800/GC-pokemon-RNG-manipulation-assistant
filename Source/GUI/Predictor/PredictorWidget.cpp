@@ -7,6 +7,34 @@
 #include "../SPokemonRNG.h"
 #include "../Settings/SConfig.h"
 
+static constexpr int NatureToStatBoostMapping[][5] = {
+  {1, 1, 1, 1, 1}, // Hardy
+  {2, 0, 1, 1, 1}, // Lonely
+  {2, 1, 1, 1, 0}, // Brave
+  {2, 1, 0, 1, 1}, // Adamant
+  {2, 1, 1, 0, 1}, // Naughty
+  {0, 2, 1, 1, 1}, // Bold
+  {1, 1, 1, 1, 1}, // Docile
+  {1, 2, 1, 1, 0}, // Relaxed 
+  {1, 2, 0, 1, 1}, // Impish
+  {1, 2, 1, 0, 1}, // Lax
+  {0, 1, 1, 1, 2}, // Timid
+  {1, 0, 1, 1, 2}, // Hasty
+  {1, 1, 1, 1, 1}, // Serious
+  {1, 1, 0, 1, 2}, // Jolly
+  {1, 1, 1, 0, 2}, // Naive
+  {0, 1, 2, 1, 1}, // Modest
+  {1, 0, 2, 1, 1}, // Mild
+  {1, 1, 2, 1, 0}, // Quiet
+  {1, 1, 1, 1, 1}, // Bashful
+  {1, 1, 2, 0, 1}, // Rash
+  {0, 1, 1, 2, 1}, // Calm
+  {1, 0, 1, 2, 1}, // Gentle
+  {1, 1, 1, 2, 0}, // Sassy
+  {1, 1, 0, 2, 1}, // Careful
+  {1, 1, 1, 1, 1}  // Quirky
+};
+
 PredictorWidget::PredictorWidget(QWidget* parent) : QWidget(parent)
 {
   initialiseWidgets();
@@ -172,31 +200,31 @@ bool PredictorWidget::desiredPredictionFound(const GUICommon::gameSelection game
         break;
       }
 
-      if (starter.atkIV < SConfig::getInstance().getMinAtkIv(startersSettings[j]))
+      if (starter.atkIV < SConfig::getInstance().getMinAtkIv(startersSettings[j], NatureToStatBoostMapping[starter.natureIndex][0]))
       {
         passAllFilters = false;
         break;
       }
 
-      if (starter.defIV < SConfig::getInstance().getMinDefIv(startersSettings[j]))
+      if (starter.defIV < SConfig::getInstance().getMinDefIv(startersSettings[j], NatureToStatBoostMapping[starter.natureIndex][1]))
       {
         passAllFilters = false;
         break;
       }
 
-      if (starter.spAtkIV < SConfig::getInstance().getMinSpAtkIv(startersSettings[j]))
+      if (starter.spAtkIV < SConfig::getInstance().getMinSpAtkIv(startersSettings[j], NatureToStatBoostMapping[starter.natureIndex][2]))
       {
         passAllFilters = false;
         break;
       }
 
-      if (starter.spDefIV < SConfig::getInstance().getMinSpDefIv(startersSettings[j]))
+      if (starter.spDefIV < SConfig::getInstance().getMinSpDefIv(startersSettings[j], NatureToStatBoostMapping[starter.natureIndex][3]))
       {
         passAllFilters = false;
         break;
       }
 
-      if (starter.speedIV < SConfig::getInstance().getMinSpeedIv(startersSettings[j]))
+      if (starter.speedIV < SConfig::getInstance().getMinSpeedIv(startersSettings[j], NatureToStatBoostMapping[starter.natureIndex][4]))
       {
         passAllFilters = false;
         break;
@@ -352,7 +380,7 @@ void PredictorWidget::updateGUI(const GUICommon::gameSelection game)
 
       m_tblStartersPrediction->setItem(i, 4 + j * nbrColPerStarter,
                                        new QTableWidgetItem(QString::number(starter.atkIV)));
-      if (starter.atkIV >= SConfig::getInstance().getMinAtkIv(startersSettings[j]))
+      if (starter.atkIV >= SConfig::getInstance().getMinAtkIv(startersSettings[j], 1))
       {
         m_tblStartersPrediction->item(i, 4 + j * nbrColPerStarter)->setBackground(greenBrush);
       }
@@ -363,7 +391,7 @@ void PredictorWidget::updateGUI(const GUICommon::gameSelection game)
       }
       m_tblStartersPrediction->setItem(i, 5 + j * nbrColPerStarter,
                                        new QTableWidgetItem(QString::number(starter.defIV)));
-      if (starter.defIV >= SConfig::getInstance().getMinDefIv(startersSettings[j]))
+      if (starter.defIV >= SConfig::getInstance().getMinDefIv(startersSettings[j], 1))
       {
         m_tblStartersPrediction->item(i, 5 + j * nbrColPerStarter)->setBackground(greenBrush);
       }
@@ -374,7 +402,7 @@ void PredictorWidget::updateGUI(const GUICommon::gameSelection game)
       }
       m_tblStartersPrediction->setItem(i, 6 + j * nbrColPerStarter,
                                        new QTableWidgetItem(QString::number(starter.spAtkIV)));
-      if (starter.spAtkIV >= SConfig::getInstance().getMinSpAtkIv(startersSettings[j]))
+      if (starter.spAtkIV >= SConfig::getInstance().getMinSpAtkIv(startersSettings[j], 1))
       {
         m_tblStartersPrediction->item(i, 6 + j * nbrColPerStarter)->setBackground(greenBrush);
       }
@@ -385,7 +413,7 @@ void PredictorWidget::updateGUI(const GUICommon::gameSelection game)
       }
       m_tblStartersPrediction->setItem(i, 7 + j * nbrColPerStarter,
                                        new QTableWidgetItem(QString::number(starter.spDefIV)));
-      if (starter.spDefIV >= SConfig::getInstance().getMinSpDefIv(startersSettings[j]))
+      if (starter.spDefIV >= SConfig::getInstance().getMinSpDefIv(startersSettings[j], 1))
       {
         m_tblStartersPrediction->item(i, 7 + j * nbrColPerStarter)->setBackground(greenBrush);
       }
@@ -396,7 +424,7 @@ void PredictorWidget::updateGUI(const GUICommon::gameSelection game)
       }
       m_tblStartersPrediction->setItem(i, 8 + j * nbrColPerStarter,
                                        new QTableWidgetItem(QString::number(starter.speedIV)));
-      if (starter.speedIV >= SConfig::getInstance().getMinSpeedIv(startersSettings[j]))
+      if (starter.speedIV >= SConfig::getInstance().getMinSpeedIv(startersSettings[j], 1))
       {
         m_tblStartersPrediction->item(i, 8 + j * nbrColPerStarter)->setBackground(greenBrush);
       }

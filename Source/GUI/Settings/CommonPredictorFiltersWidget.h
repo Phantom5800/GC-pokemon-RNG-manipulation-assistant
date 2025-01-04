@@ -14,11 +14,11 @@ public:
   virtual ~CommonPredictorFiltersWidget();
 
   int getMinHpIv() const;
-  int getMinAtkIv() const;
-  int getMinDefIv() const;
-  int getMinSpAtkIv() const;
-  int getMinSpDefIv() const;
-  int getMinSpeedIv() const;
+  int getMinAtkIv(int idx) const;
+  int getMinDefIv(int idx) const;
+  int getMinSpAtkIv(int idx) const;
+  int getMinSpDefIv(int idx) const;
+  int getMinSpeedIv(int idx) const;
   int getMinPowerHiddenPower() const;
   bool getEnableNatureFilter() const;
   QVector<bool> getNatureFilters() const;
@@ -26,11 +26,11 @@ public:
   QVector<bool> getHiddenPowerTypesFilters() const;
 
   void setMinHpIv(const int minHpIv);
-  void setMinAtkIv(const int minAtkIv);
-  void setMinDefIv(const int minDefIv);
-  void setMinSpAtkIv(const int minSpAtkIv);
-  void setMinSpDefIv(const int minSpDefIv);
-  void setMinSpeedIv(const int minSpeedIv);
+  void setMinAtkIv(const int minAtkIv, int idx);
+  void setMinDefIv(const int minDefIv, int idx);
+  void setMinSpAtkIv(const int minSpAtkIv, int idx);
+  void setMinSpDefIv(const int minSpDefIv, int idx);
+  void setMinSpeedIv(const int minSpeedIv, int idx);
   void setMinPowerHiddenPower(const int minPowerHiddenPower);
   void setEnableNatureFilter(const bool enableNatureFilter);
   void setNatureFilters(const QVector<bool> natureFilters);
@@ -39,11 +39,11 @@ public:
 
 private:
   QSpinBox* m_spnMinHpIv;
-  QSpinBox* m_spnMinAtkIv;
-  QSpinBox* m_spnMinDefIv;
-  QSpinBox* m_spnMinSpAtkIv;
-  QSpinBox* m_spnMinSpDefIv;
-  QSpinBox* m_spnMinSpeedIv;
+  QSpinBox* m_spnMinAtkIv[3];
+  QSpinBox* m_spnMinDefIv[3];
+  QSpinBox* m_spnMinSpAtkIv[3];
+  QSpinBox* m_spnMinSpDefIv[3];
+  QSpinBox* m_spnMinSpeedIv[3];
   QSpinBox* m_spnMinPowerHiddenPower;
   QVector<QCheckBox*> m_chkHiddenPowerTypes;
   QCheckBox* m_chkEnableHiddenPowerTypeFilter;

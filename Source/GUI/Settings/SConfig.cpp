@@ -70,39 +70,44 @@ int SConfig::getMinHpIv(const GUICommon::starter starter) const
   return m_settings->value(gameGroupStr + "/" + starterGroupStr + "/minHpIv", 0).toInt();
 }
 
-int SConfig::getMinAtkIv(const GUICommon::starter starter) const
+int SConfig::getMinAtkIv(const GUICommon::starter starter, int idx) const
 {
   QString gameGroupStr = gameGroupStrForStarter(starter);
   QString starterGroupStr = s_starterGroupsStr.at(static_cast<int>(starter));
-  return m_settings->value(gameGroupStr + "/" + starterGroupStr + "/minAtkIv", 0).toInt();
+  QString index = idx;
+  return m_settings->value(gameGroupStr + "/" + starterGroupStr + "/minAtkIv" + index, 0).toInt();
 }
 
-int SConfig::getMinDefIv(const GUICommon::starter starter) const
+int SConfig::getMinDefIv(const GUICommon::starter starter, int idx) const
 {
   QString gameGroupStr = gameGroupStrForStarter(starter);
   QString starterGroupStr = s_starterGroupsStr.at(static_cast<int>(starter));
-  return m_settings->value(gameGroupStr + "/" + starterGroupStr + "/minDefIv", 0).toInt();
+  QString index = idx;
+  return m_settings->value(gameGroupStr + "/" + starterGroupStr + "/minDefIv" + index, 0).toInt();
 }
 
-int SConfig::getMinSpAtkIv(const GUICommon::starter starter) const
+int SConfig::getMinSpAtkIv(const GUICommon::starter starter, int idx) const
 {
   QString gameGroupStr = gameGroupStrForStarter(starter);
   QString starterGroupStr = s_starterGroupsStr.at(static_cast<int>(starter));
-  return m_settings->value(gameGroupStr + "/" + starterGroupStr + "/minSpAtkIv", 0).toInt();
+  QString index = idx;
+  return m_settings->value(gameGroupStr + "/" + starterGroupStr + "/minSpAtkIv" + index, 0).toInt();
 }
 
-int SConfig::getMinSpDefIv(const GUICommon::starter starter) const
+int SConfig::getMinSpDefIv(const GUICommon::starter starter, int idx) const
 {
   QString gameGroupStr = gameGroupStrForStarter(starter);
   QString starterGroupStr = s_starterGroupsStr.at(static_cast<int>(starter));
-  return m_settings->value(gameGroupStr + "/" + starterGroupStr + "/minSpDefIv", 0).toInt();
+  QString index = idx;
+  return m_settings->value(gameGroupStr + "/" + starterGroupStr + "/minSpDefIv" + index, 0).toInt();
 }
 
-int SConfig::getMinSpeedIv(const GUICommon::starter starter) const
+int SConfig::getMinSpeedIv(const GUICommon::starter starter, int idx) const
 {
   QString gameGroupStr = gameGroupStrForStarter(starter);
   QString starterGroupStr = s_starterGroupsStr.at(static_cast<int>(starter));
-  return m_settings->value(gameGroupStr + "/" + starterGroupStr + "/minSpeedIv", 0).toInt();
+  QString index = idx;
+  return m_settings->value(gameGroupStr + "/" + starterGroupStr + "/minSpeedIv" + index, 0).toInt();
 }
 
 int SConfig::getMinPowerHiddenPower(const GUICommon::starter starter) const
@@ -246,39 +251,44 @@ void SConfig::setMinHpIv(const GUICommon::starter starter, const int minHpIv)
   m_settings->setValue(gameGroupStr + "/" + starterGroupStr + "/minHpIv", minHpIv);
 }
 
-void SConfig::setMinAtkIv(const GUICommon::starter starter, const int minAtkIv)
+void SConfig::setMinAtkIv(const GUICommon::starter starter, const int minAtkIv, int idx)
 {
   QString gameGroupStr = gameGroupStrForStarter(starter);
   QString starterGroupStr = s_starterGroupsStr.at(static_cast<int>(starter));
-  m_settings->setValue(gameGroupStr + "/" + starterGroupStr + "/minAtkIv", minAtkIv);
+  QString index = idx;
+  m_settings->setValue(gameGroupStr + "/" + starterGroupStr + "/minAtkIv" + index, minAtkIv);
 }
 
-void SConfig::setMinDefIv(const GUICommon::starter starter, const int minDefIv)
+void SConfig::setMinDefIv(const GUICommon::starter starter, const int minDefIv, int idx)
 {
   QString gameGroupStr = gameGroupStrForStarter(starter);
   QString starterGroupStr = s_starterGroupsStr.at(static_cast<int>(starter));
-  m_settings->setValue(gameGroupStr + "/" + starterGroupStr + "/minDefIv", minDefIv);
+  QString index = idx;
+  m_settings->setValue(gameGroupStr + "/" + starterGroupStr + "/minDefIv" + index, minDefIv);
 }
 
-void SConfig::setMinSpAtkIv(const GUICommon::starter starter, const int minSpAtkIv)
+void SConfig::setMinSpAtkIv(const GUICommon::starter starter, const int minSpAtkIv, int idx)
 {
   QString gameGroupStr = gameGroupStrForStarter(starter);
   QString starterGroupStr = s_starterGroupsStr.at(static_cast<int>(starter));
-  m_settings->setValue(gameGroupStr + "/" + starterGroupStr + "/minSpAtkIv", minSpAtkIv);
+  QString index = idx;
+  m_settings->setValue(gameGroupStr + "/" + starterGroupStr + "/minSpAtkIv" + index, minSpAtkIv);
 }
 
-void SConfig::setMinSpDefIv(const GUICommon::starter starter, const int minSpDefIv)
+void SConfig::setMinSpDefIv(const GUICommon::starter starter, const int minSpDefIv, int idx)
 {
   QString gameGroupStr = gameGroupStrForStarter(starter);
   QString starterGroupStr = s_starterGroupsStr.at(static_cast<int>(starter));
-  m_settings->setValue(gameGroupStr + "/" + starterGroupStr + "/minSpDefIv", minSpDefIv);
+  QString index = idx;
+  m_settings->setValue(gameGroupStr + "/" + starterGroupStr + "/minSpDefIv" + index, minSpDefIv);
 }
 
-void SConfig::setMinSpeedIv(const GUICommon::starter starter, const int minSpeedIv)
+void SConfig::setMinSpeedIv(const GUICommon::starter starter, const int minSpeedIv, int idx)
 {
   QString gameGroupStr = gameGroupStrForStarter(starter);
   QString starterGroupStr = s_starterGroupsStr.at(static_cast<int>(starter));
-  m_settings->setValue(gameGroupStr + "/" + starterGroupStr + "/minSpeedIv", minSpeedIv);
+  QString index = idx;
+  m_settings->setValue(gameGroupStr + "/" + starterGroupStr + "/minSpeedIv" + index, minSpeedIv);
 }
 
 void SConfig::setMinPowerHiddenPower(const GUICommon::starter starter,

@@ -94,16 +94,19 @@ void DlgSettings::loadUmbreonSettings()
 {
   m_coloTab->getUmbreonFiltersWidget()->setMinHpIv(
       SConfig::getInstance().getMinHpIv(GUICommon::starter::Umbreon));
-  m_coloTab->getUmbreonFiltersWidget()->setMinAtkIv(
-      SConfig::getInstance().getMinAtkIv(GUICommon::starter::Umbreon));
-  m_coloTab->getUmbreonFiltersWidget()->setMinDefIv(
-      SConfig::getInstance().getMinDefIv(GUICommon::starter::Umbreon));
-  m_coloTab->getUmbreonFiltersWidget()->setMinSpAtkIv(
-      SConfig::getInstance().getMinSpAtkIv(GUICommon::starter::Umbreon));
-  m_coloTab->getUmbreonFiltersWidget()->setMinSpDefIv(
-      SConfig::getInstance().getMinSpDefIv(GUICommon::starter::Umbreon));
-  m_coloTab->getUmbreonFiltersWidget()->setMinSpeedIv(
-      SConfig::getInstance().getMinSpeedIv(GUICommon::starter::Umbreon));
+  for (int i = 0; i < 3; ++i)
+  {
+    m_coloTab->getUmbreonFiltersWidget()->setMinAtkIv(
+        SConfig::getInstance().getMinAtkIv(GUICommon::starter::Umbreon, i), i);
+    m_coloTab->getUmbreonFiltersWidget()->setMinDefIv(
+        SConfig::getInstance().getMinDefIv(GUICommon::starter::Umbreon, i), i);
+    m_coloTab->getUmbreonFiltersWidget()->setMinSpAtkIv(
+        SConfig::getInstance().getMinSpAtkIv(GUICommon::starter::Umbreon, i), i);
+    m_coloTab->getUmbreonFiltersWidget()->setMinSpDefIv(
+        SConfig::getInstance().getMinSpDefIv(GUICommon::starter::Umbreon, i), i);
+    m_coloTab->getUmbreonFiltersWidget()->setMinSpeedIv(
+        SConfig::getInstance().getMinSpeedIv(GUICommon::starter::Umbreon, i), i);
+  }
   m_coloTab->getUmbreonFiltersWidget()->setMinPowerHiddenPower(
       SConfig::getInstance().getMinPowerHiddenPower(GUICommon::starter::Umbreon));
   m_coloTab->getUmbreonFiltersWidget()->setEnableNatureFilter(
@@ -120,16 +123,19 @@ void DlgSettings::loadEspeonSettings()
 {
   m_coloTab->getEspeonFiltersWidget()->setMinHpIv(
       SConfig::getInstance().getMinHpIv(GUICommon::starter::Espeon));
-  m_coloTab->getEspeonFiltersWidget()->setMinAtkIv(
-      SConfig::getInstance().getMinAtkIv(GUICommon::starter::Espeon));
-  m_coloTab->getEspeonFiltersWidget()->setMinDefIv(
-      SConfig::getInstance().getMinDefIv(GUICommon::starter::Espeon));
-  m_coloTab->getEspeonFiltersWidget()->setMinSpAtkIv(
-      SConfig::getInstance().getMinSpAtkIv(GUICommon::starter::Espeon));
-  m_coloTab->getEspeonFiltersWidget()->setMinSpDefIv(
-      SConfig::getInstance().getMinSpDefIv(GUICommon::starter::Espeon));
-  m_coloTab->getEspeonFiltersWidget()->setMinSpeedIv(
-      SConfig::getInstance().getMinSpeedIv(GUICommon::starter::Espeon));
+  for (int i = 0; i < 3; ++i)
+  {
+    m_coloTab->getEspeonFiltersWidget()->setMinAtkIv(
+        SConfig::getInstance().getMinAtkIv(GUICommon::starter::Espeon, i), i);
+    m_coloTab->getEspeonFiltersWidget()->setMinDefIv(
+        SConfig::getInstance().getMinDefIv(GUICommon::starter::Espeon, i), i);
+    m_coloTab->getEspeonFiltersWidget()->setMinSpAtkIv(
+        SConfig::getInstance().getMinSpAtkIv(GUICommon::starter::Espeon, i), i);
+    m_coloTab->getEspeonFiltersWidget()->setMinSpDefIv(
+        SConfig::getInstance().getMinSpDefIv(GUICommon::starter::Espeon, i), i);
+    m_coloTab->getEspeonFiltersWidget()->setMinSpeedIv(
+        SConfig::getInstance().getMinSpeedIv(GUICommon::starter::Espeon, i), i);
+  }
   m_coloTab->getEspeonFiltersWidget()->setMinPowerHiddenPower(
       SConfig::getInstance().getMinPowerHiddenPower(GUICommon::starter::Espeon));
   m_coloTab->getEspeonFiltersWidget()->setEnableNatureFilter(
@@ -146,16 +152,19 @@ void DlgSettings::loadEeveeSettings()
 {
   m_xdTab->getEeveeFiltersWidget()->setMinHpIv(
       SConfig::getInstance().getMinHpIv(GUICommon::starter::Eevee));
-  m_xdTab->getEeveeFiltersWidget()->setMinAtkIv(
-      SConfig::getInstance().getMinAtkIv(GUICommon::starter::Eevee));
-  m_xdTab->getEeveeFiltersWidget()->setMinDefIv(
-      SConfig::getInstance().getMinDefIv(GUICommon::starter::Eevee));
-  m_xdTab->getEeveeFiltersWidget()->setMinSpAtkIv(
-      SConfig::getInstance().getMinSpAtkIv(GUICommon::starter::Eevee));
-  m_xdTab->getEeveeFiltersWidget()->setMinSpDefIv(
-      SConfig::getInstance().getMinSpDefIv(GUICommon::starter::Eevee));
-  m_xdTab->getEeveeFiltersWidget()->setMinSpeedIv(
-      SConfig::getInstance().getMinSpeedIv(GUICommon::starter::Eevee));
+  for (int i = 0; i < 3; ++i)
+  {
+    m_xdTab->getEeveeFiltersWidget()->setMinAtkIv(
+        SConfig::getInstance().getMinAtkIv(GUICommon::starter::Eevee, i), i);
+    m_xdTab->getEeveeFiltersWidget()->setMinDefIv(
+        SConfig::getInstance().getMinDefIv(GUICommon::starter::Eevee, i), i);
+    m_xdTab->getEeveeFiltersWidget()->setMinSpAtkIv(
+        SConfig::getInstance().getMinSpAtkIv(GUICommon::starter::Eevee, i), i);
+    m_xdTab->getEeveeFiltersWidget()->setMinSpDefIv(
+        SConfig::getInstance().getMinSpDefIv(GUICommon::starter::Eevee, i), i);
+    m_xdTab->getEeveeFiltersWidget()->setMinSpeedIv(
+        SConfig::getInstance().getMinSpeedIv(GUICommon::starter::Eevee, i), i);
+  }
   m_xdTab->getEeveeFiltersWidget()->setMinPowerHiddenPower(
       SConfig::getInstance().getMinPowerHiddenPower(GUICommon::starter::Eevee));
   m_xdTab->getEeveeFiltersWidget()->setEnableNatureFilter(
@@ -174,16 +183,19 @@ void DlgSettings::saveUmbreonSettings() const
 {
   SConfig::getInstance().setMinHpIv(GUICommon::starter::Umbreon,
                                     m_coloTab->getUmbreonFiltersWidget()->getMinHpIv());
-  SConfig::getInstance().setMinAtkIv(GUICommon::starter::Umbreon,
-                                     m_coloTab->getUmbreonFiltersWidget()->getMinAtkIv());
-  SConfig::getInstance().setMinDefIv(GUICommon::starter::Umbreon,
-                                     m_coloTab->getUmbreonFiltersWidget()->getMinDefIv());
-  SConfig::getInstance().setMinSpAtkIv(GUICommon::starter::Umbreon,
-                                       m_coloTab->getUmbreonFiltersWidget()->getMinSpAtkIv());
-  SConfig::getInstance().setMinSpDefIv(GUICommon::starter::Umbreon,
-                                       m_coloTab->getUmbreonFiltersWidget()->getMinSpDefIv());
-  SConfig::getInstance().setMinSpeedIv(GUICommon::starter::Umbreon,
-                                       m_coloTab->getUmbreonFiltersWidget()->getMinSpeedIv());
+  for (int i = 0; i < 3; ++i)
+  {
+    SConfig::getInstance().setMinAtkIv(GUICommon::starter::Umbreon,
+                                       m_coloTab->getUmbreonFiltersWidget()->getMinAtkIv(i), i);
+    SConfig::getInstance().setMinDefIv(GUICommon::starter::Umbreon,
+                                       m_coloTab->getUmbreonFiltersWidget()->getMinDefIv(i), i);
+    SConfig::getInstance().setMinSpAtkIv(GUICommon::starter::Umbreon,
+                                         m_coloTab->getUmbreonFiltersWidget()->getMinSpAtkIv(i), i);
+    SConfig::getInstance().setMinSpDefIv(GUICommon::starter::Umbreon,
+                                         m_coloTab->getUmbreonFiltersWidget()->getMinSpDefIv(i), i);
+    SConfig::getInstance().setMinSpeedIv(GUICommon::starter::Umbreon,
+                                         m_coloTab->getUmbreonFiltersWidget()->getMinSpeedIv(i), i);
+  }
   SConfig::getInstance().setMinPowerHiddenPower(
       GUICommon::starter::Umbreon, m_coloTab->getUmbreonFiltersWidget()->getMinPowerHiddenPower());
   SConfig::getInstance().setEnableNatureFilter(
@@ -202,16 +214,19 @@ void DlgSettings::saveEspeonSettings() const
 {
   SConfig::getInstance().setMinHpIv(GUICommon::starter::Espeon,
                                     m_coloTab->getEspeonFiltersWidget()->getMinHpIv());
-  SConfig::getInstance().setMinAtkIv(GUICommon::starter::Espeon,
-                                     m_coloTab->getEspeonFiltersWidget()->getMinAtkIv());
-  SConfig::getInstance().setMinDefIv(GUICommon::starter::Espeon,
-                                     m_coloTab->getEspeonFiltersWidget()->getMinDefIv());
-  SConfig::getInstance().setMinSpAtkIv(GUICommon::starter::Espeon,
-                                       m_coloTab->getEspeonFiltersWidget()->getMinSpAtkIv());
-  SConfig::getInstance().setMinSpDefIv(GUICommon::starter::Espeon,
-                                       m_coloTab->getEspeonFiltersWidget()->getMinSpDefIv());
-  SConfig::getInstance().setMinSpeedIv(GUICommon::starter::Espeon,
-                                       m_coloTab->getEspeonFiltersWidget()->getMinSpeedIv());
+  for (int i = 0; i < 3; ++i)
+  {
+    SConfig::getInstance().setMinAtkIv(GUICommon::starter::Espeon,
+                                       m_coloTab->getEspeonFiltersWidget()->getMinAtkIv(i), i);
+    SConfig::getInstance().setMinDefIv(GUICommon::starter::Espeon,
+                                       m_coloTab->getEspeonFiltersWidget()->getMinDefIv(i), i);
+    SConfig::getInstance().setMinSpAtkIv(GUICommon::starter::Espeon,
+                                         m_coloTab->getEspeonFiltersWidget()->getMinSpAtkIv(i), i);
+    SConfig::getInstance().setMinSpDefIv(GUICommon::starter::Espeon,
+                                         m_coloTab->getEspeonFiltersWidget()->getMinSpDefIv(i), i);
+    SConfig::getInstance().setMinSpeedIv(GUICommon::starter::Espeon,
+                                         m_coloTab->getEspeonFiltersWidget()->getMinSpeedIv(i), i);
+  }
   SConfig::getInstance().setMinPowerHiddenPower(
       GUICommon::starter::Espeon, m_coloTab->getEspeonFiltersWidget()->getMinPowerHiddenPower());
   SConfig::getInstance().setEnableNatureFilter(
@@ -230,16 +245,19 @@ void DlgSettings::saveEeveeSettings() const
 {
   SConfig::getInstance().setMinHpIv(GUICommon::starter::Eevee,
                                     m_xdTab->getEeveeFiltersWidget()->getMinHpIv());
-  SConfig::getInstance().setMinAtkIv(GUICommon::starter::Eevee,
-                                     m_xdTab->getEeveeFiltersWidget()->getMinAtkIv());
-  SConfig::getInstance().setMinDefIv(GUICommon::starter::Eevee,
-                                     m_xdTab->getEeveeFiltersWidget()->getMinDefIv());
-  SConfig::getInstance().setMinSpAtkIv(GUICommon::starter::Eevee,
-                                       m_xdTab->getEeveeFiltersWidget()->getMinSpAtkIv());
-  SConfig::getInstance().setMinSpDefIv(GUICommon::starter::Eevee,
-                                       m_xdTab->getEeveeFiltersWidget()->getMinSpDefIv());
-  SConfig::getInstance().setMinSpeedIv(GUICommon::starter::Eevee,
-                                       m_xdTab->getEeveeFiltersWidget()->getMinSpeedIv());
+  for (int i = 0; i < 3; ++i)
+  {
+    SConfig::getInstance().setMinAtkIv(GUICommon::starter::Eevee,
+                                       m_xdTab->getEeveeFiltersWidget()->getMinAtkIv(i), i);
+    SConfig::getInstance().setMinDefIv(GUICommon::starter::Eevee,
+                                       m_xdTab->getEeveeFiltersWidget()->getMinDefIv(i), i);
+    SConfig::getInstance().setMinSpAtkIv(GUICommon::starter::Eevee,
+                                         m_xdTab->getEeveeFiltersWidget()->getMinSpAtkIv(i), i);
+    SConfig::getInstance().setMinSpDefIv(GUICommon::starter::Eevee,
+                                         m_xdTab->getEeveeFiltersWidget()->getMinSpDefIv(i), i);
+    SConfig::getInstance().setMinSpeedIv(GUICommon::starter::Eevee,
+                                         m_xdTab->getEeveeFiltersWidget()->getMinSpeedIv(i), i);
+  }
   SConfig::getInstance().setMinPowerHiddenPower(
       GUICommon::starter::Eevee, m_xdTab->getEeveeFiltersWidget()->getMinPowerHiddenPower());
   SConfig::getInstance().setEnableNatureFilter(
