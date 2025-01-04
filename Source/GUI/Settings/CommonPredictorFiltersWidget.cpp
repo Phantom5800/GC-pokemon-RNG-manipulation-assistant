@@ -9,17 +9,36 @@
 #include "../GUICommon.h"
 
 static constexpr int SpinBoxWidth = 40;
+static constexpr char* PositiveNatureHeaderStyle = R"(
+  QLabel {
+    color: red;
+    font-weight: bold;
+  }
+)";
+
+static constexpr char* NegativeNatureHeaderStyle = R"(
+  QLabel {
+    color: blue;
+    font: 16pt;
+    font-weight: bolder;
+  }
+)";
 
 CommonPredictorFiltersWidget::CommonPredictorFiltersWidget(QWidget* parent) : QWidget(parent)
 {
   QLabel* lblIvs = new QLabel(tr("Filter wanted predictions by\nthe following minimal IVs"));
 
   QLabel* lblHpIv = new QLabel(tr("HP: "));
+  QHBoxLayout* hpMins = new QHBoxLayout;
   m_spnMinHpIv = new QSpinBox();
   m_spnMinHpIv->setMinimum(0);
   m_spnMinHpIv->setMaximum(31);
   m_spnMinHpIv->setValue(0);
   m_spnMinHpIv->setMaximumWidth(SpinBoxWidth);
+  QLabel* padding = new QLabel(tr(""));
+  padding->setMaximumWidth(SpinBoxWidth);
+  hpMins->addWidget(padding);
+  hpMins->addWidget(m_spnMinHpIv);
 
   QLabel* lblAtkIv = new QLabel(tr("Attack: "));
   QHBoxLayout* atkMins = new QHBoxLayout;
@@ -92,9 +111,26 @@ CommonPredictorFiltersWidget::CommonPredictorFiltersWidget(QWidget* parent) : QW
   hiddenPowerPowerLayout->addWidget(lblHiddenPowerPower);
   hiddenPowerPowerLayout->addWidget(m_spnMinPowerHiddenPower);
 
+  QHBoxLayout* headerRow = new QHBoxLayout;
+  QLabel* header = new QLabel("");
+  QLabel* minus = new QLabel(tr("-"));
+  minus->setMaximumWidth(SpinBoxWidth);
+  minus->setAlignment(Qt::AlignCenter);
+  minus->setStyleSheet(NegativeNatureHeaderStyle);
+  headerRow->addWidget(minus);
+  QLabel* filler = new QLabel("");
+  filler->setMaximumWidth(SpinBoxWidth);
+  headerRow->addWidget(filler);
+  QLabel* plus = new QLabel(tr("+"));
+  plus->setMaximumWidth(SpinBoxWidth);
+  plus->setAlignment(Qt::AlignCenter);
+  plus->setStyleSheet(PositiveNatureHeaderStyle);
+  headerRow->addWidget(plus);
+
   QFormLayout* IvInputLayout = new QFormLayout();
   IvInputLayout->setLabelAlignment(Qt::AlignRight);
-  IvInputLayout->addRow(lblHpIv, m_spnMinHpIv);
+  IvInputLayout->addRow(header, headerRow);
+  IvInputLayout->addRow(lblHpIv, hpMins);
   IvInputLayout->addRow(lblAtkIv, atkMins);
   IvInputLayout->addRow(lblDefIv, defMins);
   IvInputLayout->addRow(lblSpAtkIv, spAtkMins);

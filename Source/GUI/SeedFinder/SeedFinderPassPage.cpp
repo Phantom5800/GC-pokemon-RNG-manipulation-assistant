@@ -13,7 +13,7 @@
 #include "../SPokemonRNG.h"
 #include "SeedFinderWizard.h"
 
-static const char* RadioButtonStyle = R"(
+static constexpr char* RadioButtonStyle = R"(
     QRadioButton::indicator {
       width: 15px;
       height: 15px;
@@ -29,7 +29,7 @@ static const char* RadioButtonStyle = R"(
     }
   )";
 
-static const char* RadioButtonStyleWithIcons = R"(
+static constexpr char* RadioButtonStyleWithIcons = R"(
     QRadioButton::indicator {
       width: 0px;
       height: 0px;
