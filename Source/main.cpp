@@ -9,7 +9,8 @@
 int main(int argc, char** argv)
 {
   #ifdef _MSC_VER
-  if (GetProcAddress(GetModuleHandle(TEXT("User32.dll")), "SetProcessDpiAwarenessContext"))
+  HMODULE user32 = GetModuleHandle(TEXT("User32.dll"));
+  if (user32 && GetProcAddress(user32, "SetProcessDpiAwarenessContext"))
   {
     SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED);
   }
