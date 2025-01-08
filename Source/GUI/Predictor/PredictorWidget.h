@@ -21,7 +21,6 @@ public:
   bool desiredPredictionFound(const GUICommon::gameSelection game);
   void updateGUI(const GUICommon::gameSelection game);
   void resetPredictor(const GUICommon::gameSelection currentGame);
-  void setAutoSplitterOffset(const bool useAutosplitter);
   void filterUnwanted(const bool filterUnwanted);
   void switchGame(const GUICommon::gameSelection game);
 
@@ -43,5 +42,4 @@ private:
   QVector<QLabel*> m_lblStartersNames;
   QStringList m_tblHeaderLabels;
   QTableWidget* m_tblStartersPrediction;
-  bool m_autosplitter;
 };

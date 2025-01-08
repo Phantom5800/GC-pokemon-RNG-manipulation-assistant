@@ -57,11 +57,6 @@ void PredictorWidget::initialiseWidgets()
   m_tblStartersPrediction->setSelectionBehavior(QAbstractItemView::SelectRows);
 }
 
-void PredictorWidget::setAutoSplitterOffset(const bool useAutosplitter)
-{
-  m_autosplitter = useAutosplitter;
-}
-
 void PredictorWidget::filterUnwanted(const bool filterUnwanted)
 {
   for (int i = 0; i < m_tblStartersPrediction->rowCount(); i++)
@@ -345,10 +340,6 @@ void PredictorWidget::updateGUI(const GUICommon::gameSelection game)
       else
       {
         double secondsOffset = frameNumberWithDelay / 60.0;
-        if (m_autosplitter)
-        {
-          secondsOffset -= 0.484;
-        }
         m_tblStartersPrediction->setItem(
             i, 2,
             new QTableWidgetItem(QString::number(frameNumberWithDelay) + " (" +
